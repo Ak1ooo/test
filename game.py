@@ -86,11 +86,11 @@ class Game:
                     self.draw()
                 print("Your hand:", self.hand)
                 print("Your HP: ", self.health)
-                print("Your Attack: ", )
+                print("Your Attack: ", self.attack.real)
                 if self.lastMonster == 15:
                     print("Last enemy: none")
                 else:
-                    print("Last enemy: ", self.lastMonster)
+                    print("Last enemy: ", self.lastMonster.real)
                 card = int(input("Choose a card (1, 2, 3 ,4) or choose to defer (0): "))
                 if card == 0:
                     self.defer()
