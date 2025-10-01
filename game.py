@@ -65,6 +65,16 @@ class Game:
         self.attack = 0
         self.game_end = False
 
+    def reset_game(self):
+        self.deck = []
+        self.hand = []
+        self.deferred = False
+        self.healed = False
+        self.lastMonster = 15
+        self.health = 20
+        self.attack = 0
+        self.game_end = False
+
     def game_loop(self):
         self.deck = create_deck()
         print("Welcome to Scoundrel!")
@@ -94,7 +104,7 @@ class Game:
                 card = int(input("Choose a card (1, 2, 3 ,4) or choose to defer (0): "))
                 if card == 0:
                     self.defer()
-                elif card == 1 or card == 2 or card == 3 or card == 4:
+                elif 1 <= card <= len(self.hand):
                     self.play_card(card)
                 elif card == 9:
                     print("See you next time!")
@@ -103,6 +113,11 @@ class Game:
                     print("Please enter a valid number!")
             except ValueError:
                 print("Please enter a number!")
+
+        new_game = input("Do you want to play again? (y/n): ")
+        if new_game == "y":
+            self.reset_game()
+            self.game_loop()
 
     def draw(self):
         while len(self.hand) < 4 and len(self.deck) > 0:
